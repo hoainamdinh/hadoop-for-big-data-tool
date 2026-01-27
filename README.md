@@ -66,8 +66,8 @@ Tài liệu hướng dẫn chi tiết cách cài đặt và quản lý môi trư
 Tải mã nguồn về máy:
 
 ```bash
-git clone <link-repo-của-bạn>
-cd docker-bigdata-stack
+git clone https://github.com/hoainamdinh/hadoop-for-big-data-tool.git
+cd hadoop-for-big-data-tool
 ```
 
 ### Bước 2: Tạo Docker Network
