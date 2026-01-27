@@ -66,6 +66,7 @@ Tài liệu hướng dẫn chi tiết cách cài đặt và quản lý môi trư
 Tải mã nguồn về máy:
 
 ```bash
+cd ~
 git clone https://github.com/hoainamdinh/hadoop-for-big-data-tool.git
 cd hadoop-for-big-data-tool
 ```
@@ -83,10 +84,10 @@ docker network create bigdata-net
 **Cách A - Khởi động thủ công:**
 ```bash
 # Khởi động Hadoop + Hive + Hue
-cd docker-hadoop-hive-hue && docker-compose up -d
+cd ~/hadoop-for-big-data-tool/docker-hadoop-hive-hue && docker-compose up -d
 
 # Khởi động Spark
-cd docker-spark && docker-compose up -d
+cd ~/hadoop-for-big-data-tool/docker-spark && docker-compose up -d
 ```
 
 **Cách B - Dùng phím tắt Bash** *(khuyến nghị)*:
@@ -145,10 +146,10 @@ start-bigdata() {
     docker network create bigdata-net 2>/dev/null || echo "✅ Network đã tồn tại"
     
     echo "🐘 Đang khởi động Hadoop + Hive + Hue..."
-    (cd "~/docker-hadoop-hue-hive" && docker-compose up -d)
+    (cd "~/hadoop-for-big-data-tool/docker-hadoop-hue-hive" && docker-compose up -d)
     
     echo "⚡ Đang khởi động Spark cluster..."
-    (cd "~/docker-spark" && docker-compose up -d)
+    (cd "~/hadoop-for-big-data-tool/docker-spark" && docker-compose up -d)
     
     echo "✅ Đã khởi động xong! Chờ 2-3 phút để các dịch vụ sẵn sàng."
     show-links
@@ -157,10 +158,10 @@ start-bigdata() {
 # 🛑 Tắt toàn bộ Big Data stack
 stop-bigdata() {
     echo "⚡ Đang tắt Spark..."
-    (cd "~/docker-spark" && docker-compose down)
+    (cd "~/hadoop-for-big-data-tool/docker-spark" && docker-compose down)
     
     echo "🐘 Đang tắt Hadoop + Hive + Hue..."
-    (cd "~/docker-hadoop-hue-hive" && docker-compose down)
+    (cd "~/hadoop-for-big-data-tool/docker-hadoop-hue-hive" && docker-compose down)
     
     echo "✅ Đã tắt toàn bộ dịch vụ."
 }
@@ -255,7 +256,6 @@ source ~/.bashrc
 ## 📁 Cấu Trúc Dự Án
 
 ```
-/home/kem/
 ├── 📂 docker-hadoop-hue-hive/          # Stack Hadoop + Hive + Hue
 │   ├── docker-compose.yml
 │   ├── hadoop-hive.env
