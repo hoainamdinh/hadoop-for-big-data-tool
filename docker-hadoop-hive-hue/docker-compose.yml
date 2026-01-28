@@ -3,6 +3,7 @@ version: "3"
 services:
   namenode:
     image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
+    container_name: namenode
     volumes:
       - namenode:/hadoop/dfs/name
     environment:
@@ -16,6 +17,7 @@ services:
     
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
+    container_name: datanode
     volumes:
       - datanode:/hadoop/dfs/data
     env_file:
@@ -29,6 +31,7 @@ services:
 
   resourcemanager:
     image: bde2020/hadoop-resourcemanager:2.0.0-hadoop2.7.4-java8
+    container_name: resourcemanager
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
     env_file:
@@ -38,6 +41,7 @@ services:
 
   hive-server:
     image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-server
     env_file:
       - ./hadoop-hive.env
     environment:
@@ -50,6 +54,7 @@ services:
 
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-metastore
     env_file:
       - ./hadoop-hive.env
     command: /opt/hive/bin/hive --service metastore
@@ -62,6 +67,7 @@ services:
 
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.3.0
+    container_name: hive-metastore-postgresql
     ports:
       - "5432:5432"
     networks:
@@ -69,6 +75,7 @@ services:
 
   huedb:
     image: postgres:12.1-alpine
+    container_name: huedb
     volumes:
       - pg_data:/var/lib/postgresl/data/
     ports:
@@ -82,6 +89,7 @@ services:
   
   hue:
     image: gethue/hue:4.6.0
+    container_name: hue
     environment:
         SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083 huedb:5000"
     ports:
