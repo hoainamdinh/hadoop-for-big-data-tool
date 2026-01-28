@@ -137,9 +137,6 @@ Thêm các hàm sau vào file `~/.bashrc` để quản lý tiện lợi:
 # 🎯 PHÍM TẮT BIG DATA STACK
 # ==========================================
 
-# 📁 Thư mục gốc dự án
-export BIGDATA_PROJECT_ROOT="/home/kem"
-
 # 🚀 Khởi động toàn bộ Big Data stack
 start-bigdata() {
     echo "🌐 Đang tạo network..."
